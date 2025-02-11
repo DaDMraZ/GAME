@@ -63,7 +63,7 @@ Birsd birsd = {225,225,225, 225,txLoadImage("fly.bmp"),txLoadImage("jump.bmp"),t
 Truba truba = {225,225,225, 225,txLoadImage("truba_up.bmp"),txLoadImage("truba_up.bmp"),txLoadImage("truba_down.bmp")};
 
 birsd.draw();
-
+truba.draw();
 
 
 

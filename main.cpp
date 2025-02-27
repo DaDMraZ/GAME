@@ -32,12 +32,9 @@ struct Birsd
    HDC image_jump;
    HDC image_fly;
 
-
-
-
- void draw()
+    void draw()
     {
-      txTransparentBlt (txDC(),x,y,w ,h, image,0,0,TX_WHITE);
+      txTransparentBlt (txDC(),x, y, w, h, image, 0, 0, TX_WHITE);
 
     }
 
@@ -48,41 +45,46 @@ struct Birsd
 
 
 int main()
+{
+txCreateWindow (1000, 600);
+txTextCursor (false);
+
+
+Birsd birsd = {225, 225, 100, 100,txLoadImage(" ¿–“»Õ »/fly.bmp"),txLoadImage(" ¿–“»Õ »/jump.bmp"),txLoadImage(" ¿–“»Õ »/fly.bmp")};
+Truba truba = {225,225,225, 225,txLoadImage(" ¿–“»Õ »/truba_up.bmp"),txLoadImage(" ¿–“»Õ »/truba_up.bmp"),txLoadImage(" ¿–“»Õ »/truba_down.bmp")};
+
+    while(!GetAsyncKeyState(VK_ESCAPE))
     {
-    txCreateWindow (1000, 600);
-    txTextCursor (false);
+        txClear();
+        txBegin();
 
-
-
- while(!GetAsyncKeyState(VK_ESCAPE))
- {
-     txClear();
-     txBegin();
-
-Birsd birsd = {225,225,225, 225,txLoadImage("fly.bmp"),txLoadImage("jump.bmp"),txLoadImage("fly.bmp")};
-Truba truba = {225,225,225, 225,txLoadImage("truba_up.bmp"),txLoadImage("truba_up.bmp"),txLoadImage("truba_down.bmp")};
-
-birsd.draw();
+        birsd.draw();
 
 
 
 
 
-  if(GetAsyncKeyState(VK_SPACE))
-  {
-  birsd.y -= 70;
-  birsd.image = birsd.image_jump;
-  }
+        if(GetAsyncKeyState(VK_SPACE))
+        {
+            birsd.y -= 70;
+            birsd.image = birsd.image_jump;
 
- birsd.y += 15;
- birsd.image =birsd.image_fly ;
+        }
+
+        else
+        {
+
+            birsd.image = birsd.image_fly ;
+        }
+
+        birsd.y += 15;
 
 
-      ///End();///
-      Sleep(20);
+        txEnd();
+        Sleep(10);
     }
 
-    //DeleteDC(birsd.image);
-    txDisableAutoPause();
-    return 0;
-    }
+//DeleteDC(birsd.image);
+txDisableAutoPause();
+return 0;
+}

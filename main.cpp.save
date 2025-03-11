@@ -122,7 +122,7 @@ Fon fon = {0,0,1000, 600,txLoadImage(" ¿–“»Õ »/fon1.bmp")};
         txBegin();
 
 
-        //fon.draw();
+        fon.draw();
         birsd.draw();
         truba.draw();
 

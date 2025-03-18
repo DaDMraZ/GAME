@@ -1,5 +1,21 @@
 
 #include "TXLib.h"
+struct Finish
+{
+  int x;
+  int y;
+  int w;
+  int h;
+  
+
+ void draw()
+    {
+      txBitBlt (txDC(), x, y, w, h);
+
+    }
+    
+
+};
 struct Fon
 {
   int x;
@@ -104,7 +120,7 @@ Button btn4 = {280, 360, 200, 45, "¬˚ıÓ‰", true};
 
 Birsd birsd = {225,225,100, 100,txLoadImage(" ¿–“»Õ »/fly.bmp"),txLoadImage(" ¿–“»Õ »/jump.bmp"),txLoadImage(" ¿–“»Õ »/fly.bmp")};
 Truba truba1 = {750,319,161, 281,txLoadImage(" ¿–“»Õ »/truba_up.bmp"),txLoadImage(" ¿–“»Õ »/truba_up.bmp"),txLoadImage(" ¿–“»Õ »/truba_down.bmp")};
-Truba truba2 = {910,300,161, 281,txLoadImage(" ¿–“»Õ »/truba_down.bmp"),txLoadImage(" ¿–“»Õ »/truba_up.bmp"),txLoadImage(" ¿–“»Õ »/truba_down.bmp")};
+Truba truba2 = {1400,0,161, 281,txLoadImage(" ¿–“»Õ »/truba_down.bmp"),txLoadImage(" ¿–“»Õ »/truba_up.bmp"),txLoadImage(" ¿–“»Õ »/truba_down.bmp")};
 Fon fon = {0,0,1000,600,txLoadImage(" ¿–“»Õ »/fon1.bmp")};
 
 
@@ -122,33 +138,46 @@ Fon fon = {0,0,1000,600,txLoadImage(" ¿–“»Õ »/fon1.bmp")};
 
         if(GetAsyncKeyState(VK_SPACE))
         {
-            birsd.y -= 50;
+            birsd.y -= 30;
             birsd.image = birsd.image_jump;
         }
+        else
+        {
+            birsd.y += 15;
+            birsd.image = birsd.image_fly;
+        }
 
-        birsd.y += 15;
-        birsd.image =birsd.image_fly ;
         truba1.x -= 10;
         truba2.x -= 10;
 
 
         if(GetAsyncKeyState(VK_LEFT))
         {
-            truba2.x = 800;
+            truba2.x = 1400;
             truba1.x = 750;
             birsd.y = 225;
         }
 
+        if(truba1.x == -300 )
+        {
+         truba1.x += 1300;
+        }
+
+        if(truba2.x == -300 )
+        {
+         truba2.x += 1300;
+        }
+
 
         txEnd();
-        Sleep(10);
+        txSleep(10);
 
       }
 
 
 
-txDeleteDC(truba2.image);
 txDeleteDC(truba1.image);
+txDeleteDC(truba2.image);
 txDeleteDC(birsd.image);
 txDeleteDC(fon.image);
 txDisableAutoPause();

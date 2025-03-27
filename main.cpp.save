@@ -1,19 +1,67 @@
 
 #include "TXLib.h"
-struct Finish
+struct Zalp
+{
+   int x;
+   int y;
+   int w;
+   int h;
+   HDC image;
+
+
+
+
+
+
+
+ void draw()
+    {
+      txTransparentBlt (txDC(),x,y,w ,h, image,TX_WHITE);
+
+    }
+
+
+
+
+
+
+
+};
+struct Boss
+{
+   int x;
+   int y;
+   int w;
+   int h;
+   HDC image;
+
+
+
+
+
+
+ void draw()
+    {
+      txTransparentBlt (txDC(),x,y,w ,h, image,TX_WHITE);
+
+    }
+
+
+ };
+struct Boron
 {
   int x;
   int y;
   int w;
   int h;
-  
+  HDC image;
 
  void draw()
     {
-      txBitBlt (txDC(), x, y, w, h);
+      txTransparentBlt (txDC(), x, y, w, h,image);
 
     }
-    
+
 
 };
 struct Fon
@@ -122,7 +170,9 @@ Birsd birsd = {225,225,100, 100,txLoadImage(" ¿–“»Õ »/fly.bmp"),txLoadImage(" ¿–
 Truba truba1 = {750,319,161, 281,txLoadImage(" ¿–“»Õ »/truba_up.bmp"),txLoadImage(" ¿–“»Õ »/truba_up.bmp"),txLoadImage(" ¿–“»Õ »/truba_down.bmp")};
 Truba truba2 = {1400,0,161, 281,txLoadImage(" ¿–“»Õ »/truba_down.bmp"),txLoadImage(" ¿–“»Õ »/truba_up.bmp"),txLoadImage(" ¿–“»Õ »/truba_down.bmp")};
 Fon fon = {0,0,1000,600,txLoadImage(" ¿–“»Õ »/fon1.bmp")};
-
+Boron boron = {1200,150,143,120,txLoadImage(" ¿–“»Õ »/boron.bmp")};
+Boss boss = {800,225,280,244,txLoadImage(" ¿–“»Õ »/boss.bmp")};
+Zalp zalp = {800,225,446,113,txLoadImage(" ¿–“»Õ »/zalp.bmp")};
 
     while(!GetAsyncKeyState(VK_ESCAPE)/*!(btn4.click())*/)
     {
@@ -132,9 +182,23 @@ Fon fon = {0,0,1000,600,txLoadImage(" ¿–“»Õ »/fon1.bmp")};
 
 
         fon.draw();
+        boron.draw();
         birsd.draw();
+        boss.draw();
         truba1.draw();
         truba2.draw();
+
+        if(GetAsyncKeyState(VK_UP))
+        {
+          boron.y -= 5;
+
+        }
+
+
+        if(GetAsyncKeyState(VK_DOWN))
+        {
+         boron.y += 5;
+        }
 
         if(GetAsyncKeyState(VK_SPACE))
         {
@@ -149,14 +213,18 @@ Fon fon = {0,0,1000,600,txLoadImage(" ¿–“»Õ »/fon1.bmp")};
 
         truba1.x -= 10;
         truba2.x -= 10;
-
+        boron.x -= 13 ;
 
         if(GetAsyncKeyState(VK_LEFT))
         {
             truba2.x = 1400;
             truba1.x = 750;
             birsd.y = 225;
+            boron.x = 1200;
+            boron.y = 150;
         }
+
+
 
         if(truba1.x == -300 )
         {
@@ -168,6 +236,22 @@ Fon fon = {0,0,1000,600,txLoadImage(" ¿–“»Õ »/fon1.bmp")};
          truba2.x += 1300;
         }
 
+        if(boron.x == -100)
+        {
+         boron.x += 1300;
+         boron.y += 50;
+
+        }
+        if(boron.y == 300 )
+        {
+         boron.y -= 150;
+        }
+        if(boron.y == 150)
+         {
+          boron.y += 150;
+         }
+
+
 
         txEnd();
         txSleep(10);
@@ -176,6 +260,8 @@ Fon fon = {0,0,1000,600,txLoadImage(" ¿–“»Õ »/fon1.bmp")};
 
 
 
+
+txDeleteDC(boron.image);
 txDeleteDC(truba1.image);
 txDeleteDC(truba2.image);
 txDeleteDC(birsd.image);

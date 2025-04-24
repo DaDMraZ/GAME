@@ -180,10 +180,26 @@ Zalp zalp = {800,225,446,113,txLoadImage(" ¿–“»Õ »/zalp.bmp")};
         txClear();
         txBegin();
 
+        if(btn0.click())
+        {
+           PAGE = "game;
+
+        }
+
+
+
+        btn0.visible = true;
+        btn1.visible = true;
+        btn2.visible = true;
+        btn3.visible = true;
+        btn4.visible = true;
+
+
+
         if(btn1.click())
 
         {
-        PAGE =  ;
+
 
         btn0.visible = false;
         btn1.visible = false;
@@ -196,9 +212,9 @@ Zalp zalp = {800,225,446,113,txLoadImage(" ¿–“»Õ »/zalp.bmp")};
 
         }
 
-        if(btn0.click())
+        if(PAGE == game)
         {
-        PAGE = game;
+
 
 
         btn0.visible = false;
@@ -284,12 +300,13 @@ Zalp zalp = {800,225,446,113,txLoadImage(" ¿–“»Õ »/zalp.bmp")};
            birsd.y -= 13;
 
            }
-        /* if(birsd.y + birsd.h + birsd.x == boron.y + boron.h + boron.x)
+         if(birsd.y + birsd.h == truba1.y + truba1.h || birsd.x == truba1.x)
+
            {
 
             birsd.x += 200;
 
-           }              */
+           }
 
               }
 

@@ -129,7 +129,7 @@ struct Button
     void draw()
     {
 
-    txSetColor (TX_WHITE, 3);
+    txSetColor (TX_GREEN, 7);
     txSetFillColor (TX_RED);
     Win32::RoundRect(txDC(), x, y, x+w, y+h, 42, 42);
     txSelectFont("Areal", 42);
@@ -180,10 +180,70 @@ Zalp zalp = {800,225,446,113,txLoadImage(" ¿–“»Õ »/zalp.bmp")};
         txClear();
         txBegin();
 
+        if(btn0.click())
+        {
+           PAGE = "game";
+
+        }
         if(btn1.click())
+        {
+           PAGE = "nastr";
+
+        }
+        if(btn2.click())
+        {
+           PAGE = "prav";
+
+        }
+        if(btn3.click())
+        {
+           PAGE = "rasr";
+
+        }
+
+
+        btn0.visible = true;
+        btn1.visible = true;
+        btn2.visible = true;
+        btn3.visible = true;
+        btn4.visible = true;
+
+
+
+        if(PAGE == "rasr")
 
         {
-        PAGE =  ;
+
+
+        btn0.visible = false;
+        btn1.visible = false;
+        btn2.visible = false;
+        btn3.visible = false;
+        btn4.visible = false;
+
+
+
+
+        }
+        if(PAGE == "prav")
+
+        {
+
+
+        btn0.visible = false;
+        btn1.visible = false;
+        btn2.visible = false;
+        btn3.visible = false;
+        btn4.visible = false;
+
+
+
+
+        }
+        if(PAGE == "nast")
+
+        {
+
 
         btn0.visible = false;
         btn1.visible = false;
@@ -196,9 +256,9 @@ Zalp zalp = {800,225,446,113,txLoadImage(" ¿–“»Õ »/zalp.bmp")};
 
         }
 
-        if(btn0.click())
+        if(PAGE == "game")
         {
-        PAGE = game;
+
 
 
         btn0.visible = false;
@@ -284,15 +344,25 @@ Zalp zalp = {800,225,446,113,txLoadImage(" ¿–“»Õ »/zalp.bmp")};
            birsd.y -= 13;
 
            }
-        /* if(birsd.y + birsd.h + birsd.x == boron.y + boron.h + boron.x)
+         if(birsd.y + birsd.h == truba1.y + truba1.h || birsd.x == truba1.x)
+
            {
 
             birsd.x += 200;
 
-           }              */
+           }
 
               }
+        if(GetAsyncKeyState(VK_ESCAPE))
+        {
+          PAGE = "menu";
+         }
+         if (birsd.y < 0)
+         {
+           birsd.y += 10;
 
+
+         }
 
         txEnd();
         txSleep(10);
